@@ -26,6 +26,16 @@
 }
 .nav-links { display: flex; list-style: none; gap: 15px; }
 
+.nav-links a {
+    text-decoration: none; /* Removes the underline */
+    color: #555;           /* Sets a grey color similar to your screenshot */
+    font-weight: 500;
+}
+
+.nav-links a:hover {
+    color: #000;           /* Darkens the text when you hover over it */
+}
+
 /* 2) Hero - 30vh [cite: 19, 20] */
 .hero {
     height: 30vh;
