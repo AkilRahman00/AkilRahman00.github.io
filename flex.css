@@ -1,0 +1,97 @@
+/* Genel Ayarlar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.wrapper {
+    display: flex; /* Mandatory [cite: 47] */
+    flex-direction: column; /* Mandatory [cite: 11, 50] */
+    height: 100vh; /* Mandatory [cite: 9, 46] */
+}
+
+/* 1) Navbar */
+.navbar {
+    height: 10vh; /* [cite: 15, 52] */
+    display: flex;
+    justify-content: space-between; /* [cite: 17, 48] */
+    align-items: center; /* [cite: 18, 49] */
+    background-color: #f4f4f4;
+    padding: 0 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 15px;
+}
+
+/* 2) Hero */
+.hero {
+    height: 30vh; /* [cite: 20] */
+    display: flex;
+    flex-direction: row; /* [cite: 23, 50] */
+    justify-content: space-between; /* [cite: 24] */
+    align-items: stretch; /* Stretch [cite: 25, 49] */
+    padding: 20px;
+    background-color: #fff;
+}
+
+.hero-image-placeholder {
+    width: 40%;
+    background-color: #e0e0e0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 3) Kartlar Bölümü */
+.cards-container {
+    height: 30vh; /* [cite: 27] */
+    display: flex;
+    flex-wrap: wrap; /* [cite: 31] */
+    gap: 10px; /* [cite: 32] */
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.card {
+    flex: 1 1 150px; /* Flexbox usage [cite: 7] */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 4) Flex Grow Uygulama */
+.grow-section {
+    height: 20vh; /* [cite: 34] */
+    display: flex;
+    align-items: stretch; /* [cite: 39] */
+    gap: 10px;
+    padding: 10px;
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.box-1 { flex-grow: 1; background-color: #3498db; } /* [cite: 36, 51] */
+.box-2 { flex-grow: 2; background-color: #2ecc71; } /* [cite: 37, 51] */
+.box-3 { flex-grow: 1; background-color: #e67e22; } /* [cite: 38, 51] */
+
+/* 5) Footer */
+.flex-footer {
+    height: 10vh; /* [cite: 41] */
+    display: flex;
+    justify-content: center; /* [cite: 43] */
+    align-items: center; /* [cite: 44] */
+    background-color: #333;
+    color: white;
+}
