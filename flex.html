@@ -4,45 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flexbox Uygulaması</title>
-    <link rel="stylesheet" href="flex.css">
+    <link rel="stylesheet" href="styles/flex.css">
 </head>
 <body>
     <div class="wrapper">
-        <nav class="navbar">
-            <div class="logo">LOGO</div>
+        <nav class="navbar section-box">
+            <div class="logo"><strong>LOGO</strong></div>
             <ul class="nav-links">
-                <li><a href="#">Ana Sayfa</a></li>
-                <li><a href="#">Hakkında</a></li>
-                <li><a href="#">Dersler</a></li>
-                <li><a href="#">İletişim</a></li>
+                <li>Ana Sayfa</li>
+                <li>Hakkında</li>
+                <li>Dersler</li>
+                <li>İletişim</li>
             </ul>
         </nav>
 
-        <section class="hero">
+        <section class="hero section-box">
             <div class="hero-content">
-                <h1>Hero Başlık</h1>
-                <p>Açıklama metni buraya gelecek.</p>
-                <button>Buton</button>
+                <h2>Hero Başlık</h2>
+                <p>Açıklama metni</p>
+                <div class="lines"><span></span><span></span></div>
+                <button class="blue-btn">Buton</button>
             </div>
-            <div class="hero-image-placeholder">Görsel Kutusu</div>
+            <div class="placeholder-img">
+                <div class="icon">🖼️</div>
+            </div>
         </section>
 
-        <section class="cards-container">
-            <div class="card">Kart 1</div>
-            <div class="card">Kart 2</div>
-            <div class="card">Kart 3</div>
-            <div class="card">Kart 4</div>
-            <div class="card">Kart 5</div>
-            <div class="card">Kart 6</div>
+        <section class="cards-section section-box">
+            <h3>Kartlar Bölümü</h3>
+            <div class="cards-container">
+                <div class="card"><h4>Kart Başlığı</h4><p>Kısa açıklama</p><button class="blue-btn">Buton</button></div>
+                <div class="card"><h4>Kart Başlığı</h4><p>Kısa açıklama</p><button class="blue-btn">Buton</button></div>
+                <div class="card"><h4>Kart Başlığı</h4><p>Kısa açıklama</p><button class="blue-btn">Buton</button></div>
+                <div class="card"><h4>Kart Başlığı</h4><p>Kısa açıklama</p><button class="blue-btn">Buton</button></div>
+                <div class="card"><h4>Kart Başlığı</h4><p>Kısa açıklama</p><button class="blue-btn">Buton</button></div>
+                <div class="card"><h4>Kart Başlığı</h4><p>Kısa açıklama</p><button class="blue-btn">Buton</button></div>
+            </div>
         </section>
 
-        <section class="grow-section">
-            <div class="box box-1">Kutu 1 (Grow: 1)</div>
-            <div class="box box-2">Kutu 2 (Grow: 2)</div>
-            <div class="box box-3">Kutu 3 (Grow: 1)</div>
+        <section class="grow-section section-box">
+            <h3>Flex Grow Uygulama</h3>
+            <div class="grow-container">
+                <div class="grow-box box1">1 Kutu<br>flex-grow: 1;<button class="blue-btn">Buton</button></div>
+                <div class="grow-box box2">2 Kutu<br>flex-grow: 2;<button class="green-btn">Buton</button></div>
+                <div class="grow-box box3">3 Kutu<br>flex-grow: 1;<button class="orange-btn">Buton</button></div>
+            </div>
         </section>
 
-        <footer class="flex-footer">
+        <footer class="footer section-box">
             <p>© 2026 - Temel Flexbox Örneği</p>
         </footer>
     </div>
