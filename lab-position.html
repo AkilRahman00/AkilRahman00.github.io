@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 5 | CSS Position</title>
+    <link rel="stylesheet" href="styles/lab-position.css">
+</head>
+<body>
+
+    <!-- FIXED: Back button -->
+    <a href="index.html" class="back-btn">← Ana Sayfaya Dön</a>
+
+    <!-- FIXED: Helper menu bottom-right -->
+    <div class="fixed-helper">Yardımcı Menü</div>
+
+    <!-- Page header -->
+    <header class="page-header">
+        <h1 class="page-title">Etkinlik Duyurusu</h1>
+        <p class="page-subtitle">CSS Position Lab Çalışması</p>
+    </header>
+
+    <main class="main-content">
+
+        <!-- RELATIVE container: the big announcement card -->
+        <div class="card-container">
+
+            <!-- Decorative background circle (z-index demo) -->
+            <div class="deco-circle"></div>
+
+            <!-- ABSOLUTE badge: top-left -->
+            <div class="badge badge-free">Ücretsiz</div>
+
+            <!-- ABSOLUTE badge: top-right -->
+            <div class="badge badge-date">24 Nisan</div>
+
+            <!-- Card main text -->
+            <div class="card-body">
+                <h2 class="card-title">Teknoloji Topluluğu Etkinliği</h2>
+                <p class="card-desc">
+                    Bu örnek sayfada amaç; CSS position özelliklerini kullanarak tek bir duyuru kartı üzerinde
+                    <strong>relative</strong>, <strong>absolute</strong>, <strong>fixed</strong>, z-index, hover,
+                    cursor ve animasyon mantığını birlikte göstermektir.
+                </p>
+            </div>
+
+            <!-- ABSOLUTE badge: center-right (location) -->
+            <div class="badge badge-location">📍 Konum: Konferans Salonu</div>
+
+            <!-- ABSOLUTE badge: bottom-right (deadline) -->
+            <div class="badge badge-deadline">Son Kayıt</div>
+
+            <!-- Pulsing highlight dot (z-index + animation) -->
+            <div class="pulse-dot"></div>
+
+        </div>
+
+    </main>
+
+    <footer class="page-footer">
+        <p>2026 – LAB Position Örnek Çalışması</p>
+    </footer>
+
+</body>
+</html>
