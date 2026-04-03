@@ -1,0 +1,339 @@
+/* ============================================================
+   LAB 5 — CSS Position Demo
+   Fonts: Google Fonts (Syne + DM Sans)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ---------- CSS Variables ---------- */
+:root {
+    --bg:         #eeeef4;
+    --card-bg:    linear-gradient(135deg, #dce0f5 0%, #e8d9f7 60%, #f5dde8 100%);
+    --accent-1:   #5b5fcf;   /* indigo */
+    --accent-2:   #9b5de5;   /* violet */
+    --accent-3:   #f15bb5;   /* pink */
+    --accent-ok:  #c8f5b0;   /* mint green */
+    --accent-warn:#ffd6a5;   /* peach */
+    --text-dark:  #1e1e2e;
+    --text-mid:   #5a5a72;
+    --text-light: #ffffff;
+    --shadow:     0 20px 60px rgba(91, 95, 207, 0.18);
+    --radius:     20px;
+    --transition: 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ---------- Body ---------- */
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: var(--bg);
+    color: var(--text-dark);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 60px;
+    /* subtle grain texture */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   FIXED ELEMENTS
+   ============================================================ */
+
+/* Back button — fixed top-left */
+.back-btn {
+    position: fixed;
+    top: 22px;
+    left: 22px;
+    z-index: 1000;
+    background-color: var(--accent-1);
+    color: var(--text-light);
+    text-decoration: none;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 10px 18px;
+    border-radius: 12px;
+    box-shadow: 0 4px 18px rgba(91, 95, 207, 0.35);
+    transition: background-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    cursor: pointer;
+}
+.back-btn:hover {
+    background-color: var(--accent-2);
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 8px 28px rgba(155, 93, 229, 0.45);
+    cursor: pointer;
+}
+.back-btn:active {
+    transform: translateY(0) scale(0.97);
+}
+
+/* Helper menu — fixed bottom-right */
+.fixed-helper {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 1000;
+    background: linear-gradient(135deg, var(--accent-2), var(--accent-1));
+    color: var(--text-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 14px 22px;
+    border-radius: 50px;
+    box-shadow: 0 6px 24px rgba(155, 93, 229, 0.4);
+    /* animation: gentle float */
+    animation: floatUpDown 3s ease-in-out infinite;
+    transition: transform var(--transition), box-shadow var(--transition);
+    cursor: help;
+}
+.fixed-helper:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 36px rgba(155, 93, 229, 0.55);
+}
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+.page-header {
+    margin-top: 100px;
+    text-align: center;
+    animation: fadeSlideDown 0.7s ease both;
+}
+.page-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--accent-1);
+    letter-spacing: -0.5px;
+}
+.page-subtitle {
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    margin-top: 6px;
+}
+
+/* ============================================================
+   MAIN
+   ============================================================ */
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    padding: 40px 20px;
+}
+
+/* ============================================================
+   CARD — position: relative  (the key container)
+   ============================================================ */
+.card-container {
+    position: relative;             /* ← RELATIVE */
+    width: min(620px, 92vw);
+    min-height: 420px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 56px 48px 80px 48px;
+    overflow: visible;
+    animation: cardEntrance 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both;
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+    cursor: default;
+}
+.card-container:hover {
+    box-shadow: 0 32px 80px rgba(91, 95, 207, 0.25);
+    transform: translateY(-4px);
+}
+
+/* ============================================================
+   DECORATIVE CIRCLE — absolute, behind text (z-index)
+   ============================================================ */
+.deco-circle {
+    position: absolute;             /* ← ABSOLUTE */
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(155, 93, 229, 0.18) 0%, rgba(241, 91, 181, 0.08) 70%, transparent 100%);
+    bottom: 30px;
+    right: 40px;
+    z-index: 0;                     /* ← Z-INDEX: behind badges */
+    animation: rotateSlow 12s linear infinite;
+    pointer-events: none;
+}
+
+/* ============================================================
+   BADGES — all position: absolute
+   ============================================================ */
+.badge {
+    position: absolute;             /* ← ABSOLUTE */
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 6px 14px;
+    z-index: 2;                     /* ← Z-INDEX: above circle */
+    box-shadow: 0 4px 14px rgba(0,0,0,0.10);
+    transition: transform var(--transition), box-shadow var(--transition);
+    cursor: pointer;
+}
+.badge:hover {
+    transform: scale(1.1) translateY(-2px);
+    box-shadow: 0 8px 22px rgba(0,0,0,0.16);
+    cursor: pointer;
+}
+
+/* Top-left: Free */
+.badge-free {
+    top: -14px;
+    left: 36px;
+    background-color: var(--accent-ok);
+    color: #2d5a1b;
+    animation: badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.8s both;
+}
+
+/* Top-right: Date */
+.badge-date {
+    top: -14px;
+    right: 36px;
+    background-color: #c8e6ff;
+    color: #1a4a72;
+    animation: badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.0s both;
+}
+
+/* Center-right: Location */
+.badge-location {
+    top: 50%;
+    right: -20px;
+    transform: translateY(-50%);
+    background-color: #ffffff;
+    color: var(--text-dark);
+    white-space: nowrap;
+    animation: badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.2s both;
+}
+.badge-location:hover {
+    transform: translateY(calc(-50% - 2px)) scale(1.08);
+    cursor: crosshair;
+}
+
+/* Bottom-right: Deadline */
+.badge-deadline {
+    bottom: -14px;
+    right: 36px;
+    background-color: var(--accent-warn);
+    color: #7a3d00;
+    animation: badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1.4s both;
+}
+
+/* ============================================================
+   CARD BODY TEXT
+   ============================================================ */
+.card-body {
+    position: relative;
+    z-index: 1;                     /* ← Z-INDEX: above deco circle */
+}
+.card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    margin-bottom: 18px;
+    line-height: 1.2;
+    letter-spacing: -0.5px;
+    /* shimmer animation on title */
+    background: linear-gradient(90deg, var(--text-dark) 0%, var(--accent-2) 50%, var(--text-dark) 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmerText 4s linear infinite 1.5s;
+}
+.card-desc {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--text-mid);
+    max-width: 400px;
+}
+.card-desc strong {
+    color: var(--accent-1);
+    font-weight: 500;
+}
+
+/* ============================================================
+   PULSING DOT — absolute, z-index on top
+   ============================================================ */
+.pulse-dot {
+    position: absolute;             /* ← ABSOLUTE */
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background-color: var(--accent-3);
+    bottom: 24px;
+    left: 24px;
+    z-index: 3;                     /* ← Z-INDEX: on top of everything */
+    animation: pulse 2s ease-in-out infinite;
+    cursor: cell;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.page-footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-mid);
+    animation: fadeSlideDown 0.7s ease 1s both;
+}
+
+/* ============================================================
+   KEYFRAME ANIMATIONS
+   ============================================================ */
+
+/* Card entrance */
+@keyframes cardEntrance {
+    from { opacity: 0; transform: translateY(40px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0)   scale(1);    }
+}
+
+/* Badge pop */
+@keyframes badgePop {
+    from { opacity: 0; transform: scale(0.5); }
+    to   { opacity: 1; transform: scale(1);   }
+}
+
+/* Header fade-slide */
+@keyframes fadeSlideDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to   { opacity: 1; transform: translateY(0);     }
+}
+
+/* Floating helper button */
+@keyframes floatUpDown {
+    0%, 100% { transform: translateY(0);   }
+    50%       { transform: translateY(-7px); }
+}
+
+/* Decorative circle slow rotation */
+@keyframes rotateSlow {
+    from { transform: rotate(0deg);   }
+    to   { transform: rotate(360deg); }
+}
+
+/* Pulsing dot */
+@keyframes pulse {
+    0%, 100% { transform: scale(1);   box-shadow: 0 0 0 0  rgba(241, 91, 181, 0.5); }
+    50%       { transform: scale(1.3); box-shadow: 0 0 0 10px rgba(241, 91, 181, 0); }
+}
+
+/* Title shimmer */
+@keyframes shimmerText {
+    from { background-position: 0%   center; }
+    to   { background-position: 200% center; }
+}
